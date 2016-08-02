@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - mst@localhost" uuid="58f4cc5b-d11f-4b1d-9008-4124802e3d77">
+    <database-info product="MySQL" version="5.7.10-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.4">
+      <schema id="1" name="mst"/>
+      <table id="2" parent="1" name="t_dept"/>
+      <table id="3" parent="1" name="t_disease"/>
+      <table id="4" parent="1" name="t_insurance"/>
+      <table id="5" parent="1" name="t_patient"/>
+      <table id="6" parent="1" name="t_patient_has_t_disease"/>
+      <table id="7" parent="1" name="t_record"/>
+      <table id="8" parent="1" name="t_role"/>
+      <table id="9" parent="1" name="t_user"/>
+      <table id="10" parent="1" name="t_userlog"/>
+      <column id="11" parent="2" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="12" parent="2" name="deptname">
+        <comment>科室名称</comment>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="13" parent="2" name="principal">
+        <comment>负责人</comment>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="14" parent="2" name="patientid">
+        <comment>关联疾病的ID</comment>
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="15" parent="2" name="fk_t_dept_t_patient1_idx">
+        <columns>patientid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="16" parent="2" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="17" parent="2" name="fk_t_dept_t_patient1">
+        <columns>patientid</columns>
+        <ref-key>~.t_patient.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="18" parent="3" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="19" parent="3" name="disname">
+        <comment>疾病名称</comment>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="20" parent="3" name="deptid">
+        <comment>关联的科室ID</comment>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="21" parent="3" name="fk_t_disease_t_dept1_idx">
+        <columns>deptid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="22" parent="3" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="23" parent="3" name="fk_t_disease_t_dept1">
+        <columns>deptid</columns>
+        <ref-key>~.t_dept.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="24" parent="4" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="25" parent="4" name="insname">
+        <comment>医保名称</comment>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <key id="26" parent="4" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="27" parent="5" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="28" parent="5" name="name">
+        <comment>病人姓名</comment>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="29" parent="5" name="pinyin">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="30" parent="5" name="sex">
+        <comment>性别</comment>
+        <data-type>varchar(10)</data-type>
+      </column>
+      <column id="31" parent="5" name="age">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="32" parent="5" name="idnum">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="33" parent="5" name="tel">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="34" parent="5" name="address">
+        <comment>地址</comment>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="35" parent="5" name="createtime">
+        <comment>创建时间</comment>
+        <data-type>timestamp</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <column id="36" parent="5" name="status">
+        <comment>状态</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="37" parent="5" name="insuranceid">
+        <comment>关联医保类型ID</comment>
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="38" parent="5" name="remark">
+        <comment>备注</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="39" parent="5" name="allergicHistory">
+        <comment>过敏史</comment>
+        <data-type>longtext</data-type>
+      </column>
+      <index id="40" parent="5" name="fk_t_patient_t_insurance1_idx">
+        <columns>insuranceid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="41" parent="5" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="42" parent="5" name="fk_t_patient_t_insurance1">
+        <columns>insuranceid</columns>
+        <ref-key>~.t_insurance.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="43" parent="6" name="patientid">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="44" parent="6" name="diseaseid">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="45" parent="6" name="fk_t_patient_has_t_disease_t_disease1_idx">
+        <columns>diseaseid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="46" parent="6" name="fk_t_patient_has_t_disease_t_patient1_idx">
+        <columns>patientid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="47" parent="6" name="PRIMARY">
+        <columns>patientid
+diseaseid</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="48" parent="6" name="fk_t_patient_has_t_disease_t_disease1">
+        <columns>diseaseid</columns>
+        <ref-key>~.t_disease.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="49" parent="6" name="fk_t_patient_has_t_disease_t_patient1">
+        <columns>patientid</columns>
+        <ref-key>~.t_patient.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="50" parent="7" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="51" parent="7" name="createtime">
+        <comment>创建时间</comment>
+        <data-type>timestamp</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <column id="52" parent="7" name="diagnose">
+        <comment>初步诊断</comment>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="53" parent="7" name="patientid">
+        <comment>关联病人ID</comment>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="54" parent="7" name="deptid">
+        <comment>关联科室ID</comment>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="55" parent="7" name="diseaseid">
+        <comment>关联疾病ID</comment>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="56" parent="7" name="symptom">
+        <comment>主要症状</comment>
+        <data-type>longtext</data-type>
+      </column>
+      <column id="57" parent="7" name="mhistory">
+        <comment>相关病史</comment>
+        <data-type>longtext</data-type>
+      </column>
+      <column id="58" parent="7" name="positive">
+        <comment>阳性特征</comment>
+        <data-type>longtext</data-type>
+      </column>
+      <column id="59" parent="7" name="result">
+        <comment>检查结果</comment>
+        <data-type>longtext</data-type>
+      </column>
+      <column id="60" parent="7" name="tplan">
+        <comment>治疗方案</comment>
+        <data-type>longtext</data-type>
+      </column>
+      <column id="61" parent="7" name="userid">
+        <comment>管床医生</comment>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="62" parent="7" name="notifytime">
+        <comment>复诊时间</comment>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <index id="63" parent="7" name="fk_t_record_t_dept1_idx">
+        <columns>deptid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="64" parent="7" name="fk_t_record_t_disease1_idx">
+        <columns>diseaseid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="65" parent="7" name="fk_t_record_t_patient1_idx">
+        <columns>patientid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="66" parent="7" name="fk_t_record_t_user1_idx">
+        <columns>userid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="67" parent="7" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="68" parent="7" name="fk_t_record_t_dept1">
+        <columns>deptid</columns>
+        <ref-key>~.t_dept.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="69" parent="7" name="fk_t_record_t_disease1">
+        <columns>diseaseid</columns>
+        <ref-key>~.t_disease.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="70" parent="7" name="fk_t_record_t_patient1">
+        <columns>patientid</columns>
+        <ref-key>~.t_patient.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="71" parent="7" name="fk_t_record_t_user1">
+        <columns>userid</columns>
+        <ref-key>~.t_user.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="72" parent="8" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="73" parent="8" name="rolename">
+        <comment>角色名称</comment>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <key id="74" parent="8" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="75" parent="9" name="id">
+        <comment>用户ID</comment>
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="76" parent="9" name="username">
+        <comment>登录账号</comment>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="77" parent="9" name="password">
+        <comment>登录密码</comment>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="78" parent="9" name="realname">
+        <comment>用户真实姓名</comment>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="79" parent="9" name="tel">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="80" parent="9" name="createtime">
+        <comment>创建时间</comment>
+        <data-type>timestamp</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <column id="81" parent="9" name="enable">
+        <data-type>tinyint(1)</data-type>
+        <default-expression>&apos;1&apos;</default-expression>
+      </column>
+      <column id="82" parent="9" name="roleid">
+        <comment>关联的角色ID</comment>
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="83" parent="9" name="deptid">
+        <comment>关联的科室ID</comment>
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="84" parent="9" name="fk_t_user_t_dept1_idx">
+        <columns>deptid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="85" parent="9" name="fk_t_user_t_role_idx">
+        <columns>roleid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="86" parent="9" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="87" parent="9" name="fk_t_user_t_dept1">
+        <columns>deptid</columns>
+        <ref-key>~.t_dept.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="88" parent="9" name="fk_t_user_t_role">
+        <columns>roleid</columns>
+        <ref-key>~.t_role.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="89" parent="10" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="90" parent="10" name="logintime">
+        <comment>登录时间</comment>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="91" parent="10" name="loginip">
+        <comment>登录IP</comment>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="92" parent="10" name="userid">
+        <comment>关联客户ID</comment>
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="93" parent="10" name="fk_t_userlog_t_user1_idx">
+        <columns>userid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="94" parent="10" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="95" parent="10" name="fk_t_userlog_t_user1">
+        <columns>userid</columns>
+        <ref-key>~.t_user.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+    </database-model>
+  </data-source>
+</component>
