@@ -43,7 +43,5 @@
                 <prop key="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
             </props>
         </property>
-
-
     </bean>
 </beans>
